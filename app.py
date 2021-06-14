@@ -27,8 +27,8 @@ STATIC_FOLDER = 'static'
 
 
 
-global graph
-graph = tf.get_default_graph()
+#global graph
+#graph = tf.get_default_graph()
 model1 = tensorflow.keras.models.load_model("pneumonia_model.h5")
 
 
