@@ -35,7 +35,7 @@ model1 = tensorflow.keras.models.load_model("pneumonia_model.h5")
 #pneumonia
 def api1(full_path):
     #with graph.as_default():
-    data = keras.preprocessing.image.load_img(full_path, target_size=(224, 224, 3))
+    data = keras.preprocessing.image.load_img(full_path, target_size=(64, 64, 3))
     data = np.expand_dims(data, axis=0)
     data = data * 1.0/ 255
     predicted = model1.predict(data)
