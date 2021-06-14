@@ -79,10 +79,14 @@ def send_file(filename):
 def index2():
     return render_template("home.html")
 
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
 @app.route("/Pneumonia")
 def Pneumonia():
     return render_template("pneumonia.html")
 
 
 if __name__ == "__main__":
-	app.run(debug=True)
+    app.run(debug=True)
