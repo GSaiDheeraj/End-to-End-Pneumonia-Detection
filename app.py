@@ -70,7 +70,7 @@ def upload_file():
             accuracy = round(result[0][predicted_class] * 100, 2)
             label = indices[predicted_class]
 
-            return render_template('pneumoniapredict.html', image_file_name = file.filename, label = label, accuracy = accuracy)
+            return render_template('pneumoniapredict.html', image_file_name = file.filename, label = label, accuracy = accuracy, prediction = prediction)
         except :
             flash("Please select the image first !!", "danger")      
             return redirect(url_for("Pneumonia"))
