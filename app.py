@@ -52,9 +52,9 @@ def api(full_path):
 
 # procesing uploaded file and predict it
 	
-@app.route('/upload11', methods=['POST','GET'])
-def upload_file():
-    #with graph.as_default():
+@app.route('/upload11', methods=['POST', 'GET'])
+def upload11_file():
+    with graph.as_default():
     if request.method == 'GET':
         return render_template('pneumonia.html')
     else:
@@ -62,22 +62,22 @@ def upload_file():
             file = request.files['image']
             full_name = os.path.join(UPLOAD_FOLDER, file.filename)
             file.save(full_name)
-
             indices = {1: 'Healthy', 0: 'Pneumonia-Infected'}
             result = api(full_name)
-
             predicted_class = np.asscalar(np.argmax(result, axis=1))
             accuracy = round(result[0][predicted_class] * 100, 2)
             label = indices[predicted_class]
-	    if accuracy < 85:
+            if accuracy < 85:
                 prediction = "Please, Check with the Doctor."
             else:
                 prediction = "Result is accurate"
 
-            return render_template('pneumoniapredict.html', image_file_name = file.filename, label = label, accuracy = accuracy, prediction = prediction)
-        except :
-            flash("Please select the image first !!", "danger")      
+            return render_template('pneumoniapredict.html', image_file_name=file.filename, label=label, accuracy=accuracy,
+                                   prediction=prediction)
+        except:
+            flash("Please select the X-ray image first !!", "danger")
             return redirect(url_for("Pneumonia"))
+
 	
 
 	
